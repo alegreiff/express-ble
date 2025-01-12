@@ -1,0 +1,48 @@
+---
+import FotoHiper from "@/assets/hipercentro.png";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+---
+
+<dialog id="HiperCentro" class="modal">
+  <div class="modal-box max-w-full md:max-w-4xl absolute top-10">
+    <h2>Hipercentro de Carnes</h2>
+    <span>El Centro Comercial de las Carnes - Bogotá</span>
+
+    <Image
+      src={FotoHiper}
+      alt="Hipercentro de carnes"
+      class="w-full p-12 mx-auto"
+    />
+    <div>
+      Somos el principal destino para la compra de productos cárnicos en Bogotá.
+      Contamos con 62 locales especializados en la venta al por mayor y al detal
+      de carne de res, cerdo, pollo, pescado y mariscos, garantizando la mejor
+      calidad y frescura. Nuestros procesos de carne de res y cerdo son
+      cuidadosamente gestionados por Frigoríficos BLE SAS, asegurando los más
+      altos estándares de calidad e inocuidad
+    </div>
+    <div class="flex mt-8 justify-center gap-4">
+      <div class="flex place-items-center">
+        <Icon name="parking" class="w-16 h-16 text-bleAzul" />
+        <p>Parqueadero vigilado totalmente gratis</p>
+      </div>
+
+      <div class="flex place-items-center">
+        <Icon name="cajeros" class="w-16 h-16 text-bleAzul" />
+        <p>Cajeros automáticos</p>
+      </div>
+
+      <div class="flex place-items-center">
+        <Icon name="comidas" class="w-16 h-16 text-bleAzul" />
+        <p>Frutería, Cafetería y Lechoneria</p>
+      </div>
+    </div>
+    Horario: Le atendemos todos los días de 4:00 a.m. a 4:00 p.m. Visítenos y conozca
+    por qué somos líderes en el mercado. Avenida Ciudad de Cali No. 15A – 91, Bogotá,
+    Colombia
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>Cerrar</button>
+  </form>
+</dialog>

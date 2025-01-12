@@ -1,10 +1,21 @@
+---
+import PrevAcoso from "@/components/politicas/PrevAcoso.astro";
+import TratamientoDatos from "@/components/politicas/TratamientoDatos.astro";
+---
+
 <footer class="footer bg-bleAzul text-bleBlanco items-center p-4">
   <div>
     <div>
-      <a href="/politicas">Política de acoso sexual</a>
+      <button class="btn btn-ghost btn-sm" onclick="PrevAcoso.showModal()"
+        >Política de acoso sexual
+      </button>
     </div>
     <div>
-      <a href="/politicatratamiento">Política de tratamiento de datos</a>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="TratamientoDatos.showModal()"
+        >Política de tratamiento de datos
+      </button>
     </div>
   </div>
   <aside class="grid-flow-col items-center">
@@ -65,3 +76,20 @@
     </a>
   </nav>
 </footer>
+
+<dialog id="PrevAcoso" class="modal">
+  <div class="modal-box max-w-full md:max-w-4xl absolute top-10">
+    <PrevAcoso />
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>Cerrar</button>
+  </form>
+</dialog>
+<dialog id="TratamientoDatos" class="modal">
+  <div class="modal-box max-w-full md:max-w-4xl absolute top-10">
+    <TratamientoDatos />
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>Cerrar</button>
+  </form>
+</dialog>

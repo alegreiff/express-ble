@@ -5,6 +5,7 @@ import ServiciosCardHome from "@/components/cards/ServiciosCardHome.astro";
 import LogoHiper from "@/assets/hipercentro-horiz.svg";
 import LogoBle from "@/assets/logo-azul-transparente.svg";
 import { Image } from "astro:assets";
+import HiperCentro from "@/components/home/HiperCentro.astro";
 ---
 
 <Layout>
@@ -21,11 +22,17 @@ import { Image } from "astro:assets";
       <Image src={LogoBle} alt="Frigoríficos BLE" class="w-96 p-12 mx-auto" />
     </div>
     <div class="hiper bg-bleBlanco w-full">
+      <HiperCentro />
       <Image
         src={LogoHiper}
         alt="Hipercentro de carnes"
         class="w-96 p-12 mx-auto"
+        onclick="HiperCentro.showModal()"
       />
     </div>
   </div>
+
+  <!-- -->
+
+  <!-- -->
 </Layout>
