@@ -9,11 +9,7 @@ interface AsuntosBle {
 }
 
 export const asuntosFble: AsuntosBle[] = [
-  {
-    asunto: "General / Otro",
-    correo: ["info@frigorificosble.com"],
-    telefono: [],
-  },
+
 
   {
     asunto: "Faena bovinos",
@@ -72,7 +68,12 @@ export const asuntosFble: AsuntosBle[] = [
     asunto: "Contabilidad",
     correo: ["contabilidad@frigorificosble.com"],
     telefono: [3107644691],
-  }
+  },
+  {
+    asunto: "General / Otro",
+    correo: ["info@frigorificosble.com"],
+    telefono: [],
+  },
 ];
 
 export const nosotrosFble = `

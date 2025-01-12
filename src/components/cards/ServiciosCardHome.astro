@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+interface Props {
+  title?: string;
+  content?: string;
+}
+
+const { title, content } = Astro.props;
+---
+
+<a
+  href="/servicios"
+  class="rounded-tl-2xl rounded-br-2xl shadow-2xl relative overflow-hidden flex flex-col group cursor-pointer"
+>
+  <div
+    class="bg-gradient-to-r
+  to-bleColor-verde to-100%
+  via-bleAzul via-50%
+  from-bleAzul from-0%
+  h-24 text-bleBlanco text-2xl px-6 py-4 text-center flex items-center justify-center"
+  >
+    {title}
+  </div>
+
+  <Icon
+    name="simboloblanco"
+    class="absolute bottom-0 -right-2 w-12 h-12 -rotate-[26deg] text-bleBlanco transition-all duration-200 opacity-10 group-hover:opacity-100"
+  />
+</a>

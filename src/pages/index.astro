@@ -1,36 +1,31 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import { serviciosFble } from "@/assets/data/data";
+import ServiciosCardHome from "@/components/cards/ServiciosCardHome.astro";
+import LogoHiper from "@/assets/hipercentro-horiz.svg";
+import LogoBle from "@/assets/logo-azul-transparente.svg";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-	<div class="flex m-4 p-4">
-		<div class="bg-bleAzul-claro h-40 w-1/3"></div>
-		<div class="bg-bleAzul h-40 w-1/3"></div>
-		<div class="bg-bleAzul-oscuro h-40 w-1/3"></div>
-
-	</div>
-	<div class="flex m-4 p-4">
-		<div class="bg-bleAzul2-claro h-40 w-1/3"></div>
-		<div class="bg-bleAzul2 h-40 w-1/3"></div>
-		<div class="bg-bleAzul2-oscuro h-40 w-1/3"></div>
-
-	</div>
-	<div class="flex m-4 p-4">
-		<div class="bg-bleVerde-claro h-40 w-1/3"></div>
-		<div class="bg-bleVerde h-40 w-1/3"></div>
-		<div class="bg-bleVerde-oscuro h-40 w-1/3"></div>
-
-	</div>
-
-	<div class="flex m-4 p-4">
-		<div class="bg-bleGris h-40 w-1/3"></div>
-		<div class="bg-bleBlanco h-40 w-1/3"></div>
-		<div class="bg-bleNegro h-40 w-1/3"></div>
-
-	</div>
-	
+  <h1 class="title">Bienvenidos a Frigoríficos BLE</h1>
+  <div class="grid-cols-1 grid md:grid-cols-2 gap-12 xl:grid-cols-3 p-8">
+    {
+      serviciosFble.map((servicio) => (
+        <ServiciosCardHome title={servicio.title} content={servicio.describe} />
+      ))
+    }
+  </div>
+  <div class="flex gap-8">
+    <div class="ble bg-bleBlanco w-full">
+      <Image src={LogoBle} alt="Frigoríficos BLE" class="w-96 p-12 mx-auto" />
+    </div>
+    <div class="hiper bg-bleBlanco w-full">
+      <Image
+        src={LogoHiper}
+        alt="Hipercentro de carnes"
+        class="w-96 p-12 mx-auto"
+      />
+    </div>
+  </div>
 </Layout>

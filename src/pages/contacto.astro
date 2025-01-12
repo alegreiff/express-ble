@@ -6,7 +6,33 @@ import { Icon } from "astro-icon/components";
 
 <Layout>
   <div class="grid place-content-center md:grid-cols-2 gap-8 bg-bleAzul/10 p-4">
-    <div
+    <div class="place-content-center text-bleGris/30 text-2xl font-bold">
+      Contáctanos.
+      <Icon
+        name="simboloazul"
+        class="top-0 left-2 w-24 h-24 -rotate-[26deg] opacity-35"
+      />
+
+      <select
+        id="asuntoSelect"
+        class="select select-bordered w-full max-w-xs text-bleGris"
+      >
+        <option selected value="">Seleccione el asunto</option>
+        {asuntosFble.map((asunto) => <option>{asunto.asunto}</option>)}
+      </select>
+      <div class="flex flex-col text-bleGris mt-8 p-4 font-normal">
+        <p class="hidden muestraasunto">
+          Para obtener información acerca de <span
+            id="asuntoConsulta"
+            class="font-bold text-bleColor-verde"></span>. Estos son los datos
+          de contacto:
+        </p>
+        <p id="correosdestino" class="text-base"></p>
+
+        <p id="telefonos" class="hidden text-base"></p>
+      </div>
+    </div>
+    <!-- <div
       class="hidden md:w-auto md:grid place-content-center text-bleGris/30 text-2xl font-bold relative"
     >
       Contáctanos.
@@ -14,15 +40,11 @@ import { Icon } from "astro-icon/components";
         name="simboloazul"
         class="absolute top-0 left-2 w-24 h-24 -rotate-[26deg] opacity-35"
       />
-    </div>
+    </div> -->
+
     <form action="/mail-send.php" method="post" class="mx-16">
-      <select id="asuntoSelect" class="select select-bordered w-full max-w-xs">
-        <option selected value="">Seleccione el asunto</option>
-        {asuntosFble.map((asunto) => <option>{asunto.asunto}</option>)}
-      </select>
-      <div class="flex mt-8 justify-center gap-8">
-        <input type="text" id="correosdestino" />
-        <p id="telefonos" class="hidden"></p>
+      <div class="flex mt-8 justify-center gap-8 flex-col">
+        <!-- <input type="text" id="correosdestino" /> -->
       </div>
 
       <div class="hidden" id="formularioBle">
@@ -60,7 +82,8 @@ import { Icon } from "astro-icon/components";
           </svg>
           <input type="text" class="grow" placeholder="Nombres" name="name" />
         </label>
-
+        <input type="hidden" name="correosble" id="correosble" />
+        <input type="hidden" name="asuntoMensaje" id="asuntoMensaje" />
         <textarea
           class="textarea textarea-primary w-full"
           placeholder="Mensaje o comentario"
@@ -74,13 +97,46 @@ import { Icon } from "astro-icon/components";
   import { asuntosFble } from "@/assets/data/data";
 
   const correoRes = (val: string) => {
-    return asuntosFble.find((elem) => elem.asunto === val)?.correo || "";
+    const correos =
+      asuntosFble.find((elem) => elem.asunto === val)?.correo || "";
+    let salida = "";
+    if (correos !== "") {
+      correos.forEach((correo, index) => {
+        if (index + 1 === correos.length) {
+          salida += encodeEmail(correo);
+        } else {
+          salida += encodeEmail(correo) + " | ";
+        }
+      });
+    }
+    return salida;
   };
   const TelefonoRes = (val: string) => {
     return asuntosFble.find((elem) => elem.asunto === val)?.telefono;
   };
 
+  const encodeChar = (char: string) => `&#${char.charCodeAt(0)};`;
+  const encodeEmail = (email: string) => {
+    // Function to convert a character to its HTML entity
+
+    // Encode each character in the email
+    const encodedEmail = email.split("").map(encodeChar).join("");
+
+    // Create the full HTML anchor tag with mailto
+    //const htmlLink = `<a href="mailto:${encodedEmail}">${encodedEmail}</a>`;
+
+    return encodedEmail;
+  };
+
   const formularioContactoMng = () => {
+    const muestraasunto =
+      document.querySelector<HTMLParagraphElement>(".muestraasunto");
+
+    const asuntoConsulta =
+      document.querySelector<HTMLSpanElement>("#asuntoConsulta");
+    const asunto = document.querySelector<HTMLInputElement>("#asuntoMensaje");
+    const sendcorreosble =
+      document.querySelector<HTMLInputElement>("#correosble");
     const formularioDinamico =
       document.querySelector<HTMLDivElement>("#formularioBle");
     const select = document.querySelector<HTMLSelectElement>("#asuntoSelect");
@@ -100,25 +156,33 @@ import { Icon } from "astro-icon/components";
         } else {
           telefonos!.classList.remove("block");
           telefonos!.classList.add("hidden");
-          telefonos!.innerHTML = "NO";
+          //telefonos!.innerHTML = "";
         }
+        asunto!.value = target.value;
+
+        asuntoConsulta!.innerHTML = target.value;
 
         const correodestino =
-          document.querySelector<HTMLInputElement>("#correosdestino");
+          document.querySelector<HTMLParagraphElement>("#correosdestino");
+
         const valorCorreos = correoRes(target.value) as string;
 
-        correodestino!.value = valorCorreos;
+        /* correodestino!.value = valorCorreos; */
+        correodestino!.innerHTML = valorCorreos;
+        sendcorreosble!.value = valorCorreos;
         if (target.value !== "") {
           formularioDinamico?.classList.remove("hidden");
+          muestraasunto?.classList.remove("hidden");
         } else {
           formularioDinamico?.classList.add("hidden");
+          muestraasunto?.classList.add("hidden");
         }
 
-        console.log("Selected value:", target.value);
+        /* console.log("Selected value:", target.value);
         console.log(
           "Selected text:",
           target.options[target.selectedIndex].text
-        );
+        ); */
       });
     }
   };
