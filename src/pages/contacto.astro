@@ -1,0 +1,127 @@
+---
+import { asuntosFble } from "@/assets/data/data";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout>
+  <div class="grid place-content-center md:grid-cols-2 gap-8 bg-bleAzul/10 p-4">
+    <div
+      class="hidden md:w-auto md:grid place-content-center text-bleGris/30 text-2xl font-bold relative"
+    >
+      Contáctanos.
+      <Icon
+        name="simboloazul"
+        class="absolute top-0 left-2 w-24 h-24 -rotate-[26deg] opacity-35"
+      />
+    </div>
+    <form action="/mail-send.php" method="post" class="mx-16">
+      <select id="asuntoSelect" class="select select-bordered w-full max-w-xs">
+        <option selected value="">Seleccione el asunto</option>
+        {asuntosFble.map((asunto) => <option>{asunto.asunto}</option>)}
+      </select>
+      <div class="flex mt-8 justify-center gap-8">
+        <input type="text" id="correosdestino" />
+        <p id="telefonos" class="hidden"></p>
+      </div>
+
+      <div class="hidden" id="formularioBle">
+        <label class="input input-bordered flex items-center gap-2 my-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+            ></path>p
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+            ></path>
+          </svg>
+          <input
+            type="text"
+            class="grow"
+            placeholder="Correo electrónico"
+            name="email"
+          />
+        </label>
+        <label class="input input-bordered flex items-center gap-2 my-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
+            ></path>
+          </svg>
+          <input type="text" class="grow" placeholder="Nombres" name="name" />
+        </label>
+
+        <textarea
+          class="textarea textarea-primary w-full"
+          placeholder="Mensaje o comentario"
+          name="message"></textarea>
+        <button class="btn mt-4">Enviar</button>
+      </div>
+    </form>
+  </div>
+</Layout>
+<script>
+  import { asuntosFble } from "@/assets/data/data";
+
+  const correoRes = (val: string) => {
+    return asuntosFble.find((elem) => elem.asunto === val)?.correo || "";
+  };
+  const TelefonoRes = (val: string) => {
+    return asuntosFble.find((elem) => elem.asunto === val)?.telefono;
+  };
+
+  const formularioContactoMng = () => {
+    const formularioDinamico =
+      document.querySelector<HTMLDivElement>("#formularioBle");
+    const select = document.querySelector<HTMLSelectElement>("#asuntoSelect");
+    if (select) {
+      select.addEventListener("change", (event: Event) => {
+        // Type assertion since we know it's a select element
+        const target = event.target as HTMLSelectElement;
+        const telefonos =
+          document.querySelector<HTMLParagraphElement>("#telefonos");
+        const telefonosBle = TelefonoRes(target.value);
+        if (telefonosBle && telefonosBle.length > 0) {
+          const numerosTel = telefonosBle.join(" | ");
+
+          telefonos!.classList.remove("hidden");
+          telefonos!.classList.add("block");
+          telefonos!.innerHTML = numerosTel;
+        } else {
+          telefonos!.classList.remove("block");
+          telefonos!.classList.add("hidden");
+          telefonos!.innerHTML = "NO";
+        }
+
+        const correodestino =
+          document.querySelector<HTMLInputElement>("#correosdestino");
+        const valorCorreos = correoRes(target.value) as string;
+
+        correodestino!.value = valorCorreos;
+        if (target.value !== "") {
+          formularioDinamico?.classList.remove("hidden");
+        } else {
+          formularioDinamico?.classList.add("hidden");
+        }
+
+        console.log("Selected value:", target.value);
+        console.log(
+          "Selected text:",
+          target.options[target.selectedIndex].text
+        );
+      });
+    }
+  };
+
+  document.addEventListener("astro:page-load", formularioContactoMng);
+</script>

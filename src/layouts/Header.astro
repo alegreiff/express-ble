@@ -1,0 +1,79 @@
+---
+import LogoBlanco from "@/assets/logo-blanco-transparente.svg";
+import { Image } from "astro:assets";
+
+const enlaces = [
+  { nombre: "Inicio", url: "/" },
+  { nombre: "Servicios", url: "/servicios" },
+  { nombre: "Conócenos", url: "/frigorificosble" },
+  { nombre: "Contacto", url: "/contacto" },
+  { nombre: "Enlaces de interés", url: "/enlaces" },
+];
+const pagePath = Astro.url.pathname;
+---
+
+<div
+  class=`navbar bg-bleAzul text-bleBlanco h-28 border-b-8  border-t-8 border-b-bleColor-verde border-t-bleColor-verde `
+>
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg class="h-16 w-16 text-bleBlanco" viewBox="0 0 24 24"
+          ><g fill="currentColor"
+            ><path
+              d="M8 6.983a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2zM7 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1m1 3.017a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2z"
+            ></path><path
+              fill-rule="evenodd"
+              d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10m-2 0a8 8 0 1 1-16 0a8 8 0 0 1 16 0"
+              clip-rule="evenodd"></path></g
+          ></svg
+        >
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-bleAzul rounded-box z-[1] mt-3 w-52 p-2 shadow"
+      >
+        {
+          enlaces.map((enlace) => (
+            <li
+              class={
+                pagePath === enlace.url
+                  ? `rounded-lg  bg-bleAzul-claro my-2 font-bold hover:bg-bleColor-verde transition-all duration-200 bg-bleColor-verde`
+                  : `rounded-lg  bg-bleAzul-claro my-2 font-bold hover:bg-bleColor-verde transition-all duration-200`
+              }
+            >
+              <a href={enlace.url}>{enlace.nombre}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <a href="/" class="">
+      <Image src={LogoBlanco} alt="Logo" class="h-16" />
+    </a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu-horizontal px-1">
+      {
+        enlaces.map((enlace) => (
+          <li
+            class={
+              pagePath === enlace.url
+                ? `rounded-lg  bg-bleColor-verde mx-2 font-bold hover:bg-bleColor-verde transition-all duration-200  px-3 py-2  `
+                : `rounded-lg  bg-bleAzul-claro mx-2 font-bold hover:bg-bleColor-verde transition-all duration-200 px-3 py-2`
+            }
+          >
+            <a href={enlace.url} class="">
+              {enlace.nombre}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<!--
+
+
+-->

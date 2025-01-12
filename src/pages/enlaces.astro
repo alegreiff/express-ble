@@ -1,0 +1,33 @@
+---
+import EnlacesCard from "@/components/cards/EnlacesCard.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+  <h1 class="title">Enlaces de interés</h1>
+  <p class="describe">
+    A continuación encontrará el acceso directo a nuestros portales para
+    clientes y trabajadores.
+  </p>
+
+  <div class="md:flex justify-center gap-16">
+    <EnlacesCard
+      title="InfoBLE Porcinos"
+      link="https://infoble.cloudmantum.com/"
+      linkText="Ingresar"
+      describe="Información de trazabilidad de los cerdos ingresados a la planta de frigoríficos ble sas desde la recepción hasta despacho de productos y subproductos."
+    />
+    <EnlacesCard
+      title="InfoBLE Bovinos"
+      link="http://158.69.221.174:8080/portal-web/#/login"
+      linkText="Ingresar"
+      describe="Información de trazabilidad de los bovinos ingresados a la planta de frigoríficos ble sas desde la recepción hasta despacho de productos y subproductos."
+    />
+    <EnlacesCard
+      title="Acceso para trabajadores"
+      link="https://aapp01.novacloud.com.co/Portal_FRIGORIFICOS_BLE/Acceso/Login.aspx"
+      linkText="Ingresar"
+      describe="Acceso exclusivo para trabajadores"
+    />
+  </div>
+</Layout>

@@ -1,0 +1,38 @@
+---
+import { nosotrosFble } from "@/assets/data/data";
+import MapaUbicacion from "@/components/MapaUbicacion.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout>
+  <h1 class="title">Frigoríficos BLE</h1>
+
+  <Fragment class="describe" set:html={nosotrosFble} />
+  <div class="max-w-4xl mx-auto p-8">
+    <div class="card bg-base-100 w-full shadow-xl">
+      <MapaUbicacion />
+      <div class="card-body">
+        <h2 class="card-title">Avenida Ciudad de Cali No. 15A – 91</h2>
+
+        <div class="justify-end">
+          <div class="flex p-4">
+            <Icon name="phone" class="w-8 h-8 text-bleAzul" />
+            <div>Tels.: (57-1) 411 3676 - 411 3617</div>
+          </div>
+          <div class="flex p-4">
+            <Icon name="fax" class="w-8 h-8 text-bleAzul" />
+            <div>Fax: (57-1) 292 4697</div>
+          </div>
+          <div class="flex p-4">
+            <Icon name="mail" class="w-8 h-8 text-bleAzul" />
+            <div>info@frigorificosble.com</div>
+          </div>
+
+          <!-- 
+           -->
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

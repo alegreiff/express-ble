@@ -1,0 +1,58 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import LogoBlanco from '@/assets/logo-blanco-transparente.svg'
+import LogoAzul from '@/assets/logo-azul-transparente.svg'
+
+const logo = LogoAzul.src
+
+---
+
+<Layout>
+  <div class="grid place-content-center p-8 m-4 bg-bleBlanco">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-bleAzul">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-bleAzul2">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-jaime-captureble">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-jaime-cmyk">
+    <span class="text-bleBlanco">CMYK</span>
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 "
+  style="background-color: #1b3f6b;"
+  >
+  <span class="text-bleBlanco">INLINE CMYK</span>
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-jaime-cmyk">
+    <span class="text-bleBlanco">HSLA</span>
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-jaime-test2">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-jaime-test3">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-jaime-test4">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+  <div class="grid place-content-center p-8 m-4 bg-bleAzul2-claro">
+    
+    <img src={logo} alt="Logo" class="h-16"  />
+  </div>
+</Layout>

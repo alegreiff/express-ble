@@ -1,0 +1,22 @@
+---
+import type { string } from 'astro:schema';
+
+interface Props {
+  title?: string;
+  link?: string;
+  linkText?: string;
+  describe?: string
+
+}
+
+const {title, link="#", linkText, describe} = Astro.props
+---
+<div class="card bg-base-100 w-96 shadow-xl mx-auto my-4">
+  <div class="card-body">
+    <h2 class="card-title">{title}</h2>
+    <p>{describe}</p>
+    <div class="card-actions justify-end">
+      <a href={link} target="_blank" class="btn btn-primary">{linkText}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+---
+import Footer from "@/layouts/Footer.astro";
+import Header from "@/layouts/Header.astro";
+import { ClientRouter } from "astro:transitions";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Frigoríficos BLE SAS</title>
+    <ClientRouter />
+  </head>
+  <body class="debug-screens">
+    <main class="container mx-auto bg-bleBlanco">
+      <Header />
+      <div class="p-4">
+        <slot />
+      </div>
+      <Footer />
+    </main>
+  </body>
+</html>
+<style is:global>
+  body {
+    @apply bg-slate-400 min-h-screen;
+  }
+
+  /* .leaflet-control-attribution {
+    @apply flex border-4 min-h-96;
+   }
+	 .leaflet-bottom .leaflet-right{
+		@apply hidden;
+	 } */
+  h1.title {
+    @apply text-3xl text-bleAzul-oscuro py-4;
+  }
+  p.describe {
+    @apply text-2xl text-bleAzul-oscuro max-w-4xl mb-4;
+  }
+</style>
