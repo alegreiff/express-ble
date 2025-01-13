@@ -5,9 +5,9 @@ import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
+  <h1 class="title">Contáctanos</h1>
   <div class="grid place-content-center md:grid-cols-2 gap-8 bg-bleAzul/10 p-4">
     <div class="place-content-center text-bleGris/30 text-2xl font-bold">
-      Contáctanos.
       <Icon
         name="simboloazul"
         class="top-0 left-2 w-24 h-24 -rotate-[26deg] opacity-35"
@@ -67,6 +67,7 @@ import { Icon } from "astro-icon/components";
             class="grow"
             placeholder="Correo electrónico"
             name="email"
+            required
           />
         </label>
         <label class="input input-bordered flex items-center gap-2 my-4">
@@ -80,15 +81,30 @@ import { Icon } from "astro-icon/components";
               d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
             ></path>
           </svg>
-          <input type="text" class="grow" placeholder="Nombres" name="name" />
+          <input
+            type="text"
+            class="grow"
+            placeholder="Nombres"
+            name="name"
+            required
+          />
         </label>
         <input type="hidden" name="correosble" id="correosble" />
         <input type="hidden" name="asuntoMensaje" id="asuntoMensaje" />
         <textarea
           class="textarea textarea-primary w-full"
           placeholder="Mensaje o comentario"
+          required
           name="message"></textarea>
-        <button class="btn mt-4">Enviar</button>
+        <button class="btn mt-4 blebtn">Enviar</button>
+      </div>
+      <div
+        class="grid place-items-center text-2xl text-bleAzul/70 h-full"
+        id="formOculto"
+      >
+        En Frigoríficos BLE estamos atentos para atender tus inquietudes.
+        Selecciona un asunto y encontrarás los datos de contacto directo o
+        podrás enviarnos un correo electrónico.
       </div>
     </form>
   </div>
@@ -137,6 +153,9 @@ import { Icon } from "astro-icon/components";
     const asunto = document.querySelector<HTMLInputElement>("#asuntoMensaje");
     const sendcorreosble =
       document.querySelector<HTMLInputElement>("#correosble");
+
+    const formOculto = document.querySelector<HTMLDivElement>("#formOculto");
+
     const formularioDinamico =
       document.querySelector<HTMLDivElement>("#formularioBle");
     const select = document.querySelector<HTMLSelectElement>("#asuntoSelect");
@@ -173,9 +192,12 @@ import { Icon } from "astro-icon/components";
         if (target.value !== "") {
           formularioDinamico?.classList.remove("hidden");
           muestraasunto?.classList.remove("hidden");
+          formOculto?.classList.add("hidden");
+          //****** */
         } else {
           formularioDinamico?.classList.add("hidden");
           muestraasunto?.classList.add("hidden");
+          formOculto?.classList.remove("hidden");
         }
 
         /* console.log("Selected value:", target.value);

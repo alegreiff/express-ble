@@ -6,8 +6,8 @@ import { Icon } from "astro-icon/components";
 
 <dialog id="HiperCentro" class="modal">
   <div class="modal-box max-w-full md:max-w-4xl absolute top-10">
-    <h2>Hipercentro de Carnes</h2>
-    <span>El Centro Comercial de las Carnes - Bogotá</span>
+    <h2 class="text-3xl font-bold">Hipercentro de Carnes</h2>
+    <span class="text-2xl">El Centro Comercial de las Carnes - Bogotá</span>
 
     <Image
       src={FotoHiper}
@@ -38,9 +38,15 @@ import { Icon } from "astro-icon/components";
         <p>Frutería, Cafetería y Lechoneria</p>
       </div>
     </div>
-    Horario: Le atendemos todos los días de 4:00 a.m. a 4:00 p.m. Visítenos y conozca
-    por qué somos líderes en el mercado. Avenida Ciudad de Cali No. 15A – 91, Bogotá,
-    Colombia
+
+    <div role="alert" class="alert alert-error mt-8 bg-bleColor-dorado2">
+      <Icon name="horario" class="w-24 h-24 text-bleAzul" />
+      <span
+        >Horario: Le atendemos todos los días de 4:00 a.m. a 4:00 p.m. Visítenos
+        y conozca por qué somos líderes en el mercado. Avenida Ciudad de Cali
+        No. 15A – 91, Bogotá, Colombia</span
+      >
+    </div>
   </div>
   <form method="dialog" class="modal-backdrop">
     <button>Cerrar</button>

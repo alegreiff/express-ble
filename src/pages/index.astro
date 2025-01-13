@@ -17,16 +17,18 @@ import HiperCentro from "@/components/home/HiperCentro.astro";
       ))
     }
   </div>
-  <div class="flex gap-8">
+  <div class="md:flex gap-8 border">
     <div class="ble bg-bleBlanco w-full">
-      <Image src={LogoBle} alt="Frigoríficos BLE" class="w-96 p-12 mx-auto" />
+      <a href="frigorificosble" class="mx-auto border">
+        <Image src={LogoBle} alt="Frigoríficos BLE" class="w-96 p-12 mx-auto" />
+      </a>
     </div>
     <div class="hiper bg-bleBlanco w-full">
       <HiperCentro />
       <Image
         src={LogoHiper}
         alt="Hipercentro de carnes"
-        class="w-96 p-12 mx-auto"
+        class="w-96 p-12 mx-auto cursor-pointer mt-6"
         onclick="HiperCentro.showModal()"
       />
     </div>
