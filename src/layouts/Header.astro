@@ -2,6 +2,10 @@
 import LogoBlanco from "@/assets/logo-blanco-transparente.svg";
 import { Image } from "astro:assets";
 
+const replaceString = (str: string): string => {
+  return str.replace(/\//g, "");
+};
+
 const enlaces = [
   { nombre: "Inicio", url: "/" },
   { nombre: "Servicios", url: "/servicios" },
@@ -37,8 +41,8 @@ const pagePath = Astro.url.pathname;
           enlaces.map((enlace) => (
             <li
               class={
-                pagePath === enlace.url
-                  ? `rounded-lg  bg-bleAzul-claro my-2 font-bold hover:bg-bleColor-verde transition-all duration-200 bg-bleColor-verde`
+                replaceString(pagePath) === replaceString(enlace.url)
+                  ? `rounded-lg   my-2 font-bold hover:bg-bleColor-verde transition-all duration-200 bg-bleColor-verde`
                   : `rounded-lg  bg-bleAzul-claro my-2 font-bold hover:bg-bleColor-verde transition-all duration-200`
               }
             >
@@ -58,7 +62,7 @@ const pagePath = Astro.url.pathname;
         enlaces.map((enlace) => (
           <li
             class={
-              pagePath === enlace.url
+              replaceString(pagePath) === replaceString(enlace.url)
                 ? `rounded-lg  bg-bleColor-verde mx-2 font-bold hover:bg-bleColor-verde transition-all duration-200  px-3 py-2  `
                 : `rounded-lg  bg-bleAzul-claro mx-2 font-bold hover:bg-bleColor-verde transition-all duration-200 px-3 py-2`
             }
